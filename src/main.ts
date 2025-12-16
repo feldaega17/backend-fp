@@ -12,9 +12,13 @@ async function bootstrap() {
 
     // CORS: allow Vercel + local dev
     app.enableCors({
-        origin: true,
+        origin: [
+            'http://localhost:5173',
+            'https://fp-frontend-two.vercel.app/',
+        ],
         credentials: true,
     });
+
 
     app.useGlobalPipes(
         new ValidationPipe({
