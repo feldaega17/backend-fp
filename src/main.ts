@@ -12,10 +12,7 @@ async function bootstrap() {
 
     // CORS: allow Vercel + local dev
     app.enableCors({
-        origin: [
-            'http://localhost:5173',
-            'https://pbkk-frontend.vercel.app', // GANTI dengan domain Vercel kamu
-        ],
+        origin: true,
         credentials: true,
     });
 

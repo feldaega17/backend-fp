@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: pbkk-backend
+    env: node
+    plan: free
+    buildCommand: corepack enable && pnpm install && pnpm run build
+    startCommand: pnpm run start:prod
