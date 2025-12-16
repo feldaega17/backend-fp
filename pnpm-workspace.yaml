@@ -1,0 +1,7 @@
+ignoredBuiltDependencies:
+  - bcrypt
+  - unrs-resolver
+
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - sqlite3
