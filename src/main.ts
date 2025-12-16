@@ -12,10 +12,7 @@ async function bootstrap() {
 
     // CORS: allow Vercel + local dev
     app.enableCors({
-        origin: [
-            'http://localhost:5173',
-            'https://fp-frontend-two.vercel.app/',
-        ],
+        origin: ['https://fp-frontend-two.vercel.app'], // domain Vercel frontend
         credentials: true,
     });
 
