@@ -10,16 +10,31 @@ dotenv.config();
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-    // Enable CORS
+    // CORS: allow Vercel + local dev
     app.enableCors({
-        origin: 'http://localhost:5173', // Vite default port
+        origin: [
+            'http://localhost:5173',
+            'https://pbkk-frontend.vercel.app', // GANTI dengan domain Vercel kamu
+        ],
         credentials: true,
     });
 
-    app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-    app.useStaticAssets(join(__dirname, '..', 'uploads'), { prefix: '/uploads/' });
-    await app.listen(3000);
-    console.log('Server running on port 3000');
+    app.useGlobalPipes(
+        new ValidationPipe({
+            whitelist: true,
+            transform: true,
+        }),
+    );
+
+    // Static files (uploads)
+    app.useStaticAssets(join(__dirname, '..', 'uploads'), {
+        prefix: '/uploads/',
+    });
+
+    const port = process.env.PORT || 3000;
+    await app.listen(port);
+
+    console.log(`Server running on port ${port}`);
 }
 
 bootstrap();
